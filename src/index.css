@@ -70,3 +70,54 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Style for Webkit browsers (Chrome, Safari) */
+.range {
+  background: linear-gradient(
+    to right,
+    #fa5c6f,
+    #fa5c6f 50%,
+    #fff 50%,
+    #fff
+  ); /* Smooth gradient */
+  border: solid 1px #fa5c6f;
+  border-radius: 8px;
+  height: 7px;
+  margin-top: 20px;
+  outline: none;
+  transition: background 450ms ease-in;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  width: 12px;
+  -webkit-appearance: none;
+  height: 12px;
+  background: #fc1933;
+  border-radius: 50%;
+}
+
+/* .container {
+  width: 100%;
+  max-width: 576px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.container {
+  @media (min-width: 768px) {
+    max-width: 576px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1154px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1300px;
+  }
+} */

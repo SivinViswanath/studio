@@ -83,23 +83,27 @@ const Header = () => {
       ref={containerRef}
     >
       {headers.map((header, index) => (
-        <div key={index} className='absolute inset-0'>
-          <div className='absolute inset-0 flex items-center justify-start p-4'>
-            <h1 className=''>
-              <span
-                className='font-[tourney] md:text-8xl opacity-0 text-6xl 2xl:text-9xl'
-                ref={textRefs[index * 2]}
-              >
-                {header.text1}
-              </span>
-              <br />
-              <span
-                className='md:text-8xl font-bold opacity-0 text-6xl 2xl:text-9xl'
-                ref={textRefs[index * 2 + 1]}
-              >
-                {header.text2}
-              </span>
-            </h1>
+        <div key={index} className='absolute inset-0 h-full'>
+          <div className='inset-0 flex items-center justify-start h-full'>
+            <div className='container'>
+              <div className='flex items-center'>
+                <h1 className=''>
+                  <span
+                    className='font-[tourney] md:text-8xl opacity-0 text-6xl 2xl:text-9xl'
+                    ref={textRefs[index * 2]}
+                  >
+                    {header.text1}
+                  </span>
+                  <br />
+                  <span
+                    className='md:text-8xl font-bold opacity-0 text-6xl 2xl:text-9xl'
+                    ref={textRefs[index * 2 + 1]}
+                  >
+                    {header.text2}
+                  </span>
+                </h1>
+              </div>
+            </div>
           </div>
           <img
             src={header.image}
