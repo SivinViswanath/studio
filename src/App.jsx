@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import AboutUs from './components/AboutUs/AboutUs';
 import Portfolio from './components/Portfolio/Portfolio';
 import Works from './components/Works/Works';
+import Socials from './components/Socials/Socials';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <AboutUs />
         {/* <Portfolio /> */}
         <Works />
+        <Socials/>
       </main>
     </>
   );

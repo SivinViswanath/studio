@@ -121,3 +121,13 @@ input[type='range']::-webkit-slider-thumb {
     max-width: 1300px;
   }
 } */
+
+/* Swiper Styles */
+.swiper-button-prev {
+  color: #fa5c6f;
+}
+
+.swiper-button-next {
+  color: #fa5c6f;
+
+}
