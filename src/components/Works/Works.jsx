@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-
-import { Navigation } from 'swiper/modules';
 
 const Works = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -93,20 +92,25 @@ const Works = () => {
 
   return (
     <section>
-      <div className='container'>
-        <div className='text-center my-10 p-0 m-0'>
-          <p className='text-3xl font-[tourney] 2xl:text-4xl'>Clients</p>
-          <h1 className='font-[poppins] font-bold 2xl:text-6xl'>
+      <div className="container">
+        <div className="text-center my-10 p-0 m-0">
+          <p className="text-3xl font-[tourney] 2xl:text-4xl">Clients</p>
+          <h1 className="font-[poppins] font-bold 2xl:text-6xl">
             Films We Worked
           </h1>
         </div>
-        <div className=''>
-          <div className=''>
+        <div className="">
+          <div className="">
             <Swiper
               navigation={true}
-              modules={[Navigation]}
-              className='mySwiper filmslider'
+              modules={[Autoplay, Pagination, Navigation]}
+              className="mySwiper filmslider"
+              loop={true}
               slidesPerView={5}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
               breakpoints={{
                 // when window width is >= 640px
                 320: {
@@ -128,22 +132,26 @@ const Works = () => {
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className='w-full md:w-56 flex-shrink-0'
+                    className="w-full md:w-56 flex-shrink-0"
                     style={{ margin: '0 1%' }}
                   >
-                    <img
-                      src={image.src}
-                      alt={`Slide ${index}`}
-                      className='w-full md:w-56 md:h-80'
-                    />
-                    <div className='text-center mt-2 overflow-hidden'>
+                    <div>
+                      <figure className="relative  pb-[120%]">
+                        <img
+                          src={image.src}
+                          alt={`Slide ${index}`}
+                          className=" md:h-80 object-cover absolute top-0 left-0 w-full h-full "
+                        />
+                      </figure>
+                    </div>
+                    <div className="text-center mt-2 md:mt-16  overflow-hidden">
                       {' '}
                       {/* Add title container */}
-                      <span className='font-[poppins] text-2xl md:text-lg text-red-400'>
+                      <span className="font-[poppins] text-2xl md:text-lg text-red-400 font-bold">
                         {image.title}
                       </span>
                       <br />
-                      <span className='font-[poppins] text-2xl md:text-sm text-white'>
+                      <span className="font-[poppins] text-2xl md:text-sm text-white">
                         {image?.year}
                       </span>
                     </div>

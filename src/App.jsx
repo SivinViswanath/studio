@@ -8,6 +8,8 @@ import AboutUs from './components/AboutUs/AboutUs';
 import Portfolio from './components/Portfolio/Portfolio';
 import Works from './components/Works/Works';
 import Socials from './components/Socials/Socials';
+import Footer from './components/Footer/Footer';
+import NewsLetter from './components/NewsLetter/NewsLetter';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         {/* <Portfolio /> */}
         <Works />
         <Socials/>
+        <NewsLetter/>
+        {/* <Footer/> */}
       </main>
     </>
   );
