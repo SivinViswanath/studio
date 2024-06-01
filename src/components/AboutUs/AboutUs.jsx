@@ -21,7 +21,7 @@ const AboutUs = () => {
               <div class="p-5">
                 <a href="#">
                   <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Voice Recording
+                    Sound Designing
                   </h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
@@ -59,7 +59,7 @@ const AboutUs = () => {
               <div class="p-5">
                 <a href="#">
                   <h5 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Sound Mixing
+                    Dolby Atmos Mixing
                   </h5>
                 </a>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">

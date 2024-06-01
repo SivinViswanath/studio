@@ -1,5 +1,6 @@
 import { Box, TextField } from '@mui/material';
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { FaPhone } from 'react-icons/fa';
 import { Fa4 } from 'react-icons/fa6';
 import { IoIosContact } from 'react-icons/io';
@@ -10,6 +11,74 @@ import {
 } from 'react-icons/md';
 
 const NewsLetter = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    contactNumber: '',
+    message: '',
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  console.log(formData);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      const response = axios.post(
+        'http://localhost:3000/api/subscriber',
+        formData,
+      );
+      console.log('Form submitted succeccfully', response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log('form submission');
+  //   const smtpUser = import.meta.env.VITE_EMAIL_USER;
+  //   const smtpPass = import.meta.env.VITE_EMAIL_PASS;
+  //   const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+  //   try {
+  //     Email.send({
+  //       SecureToken: 'c3c49119-2f49-449b-aeb0-f1eef4ac2d86',
+  //       To: adminEmail,
+  //       From: smtpUser,
+  //       Subject: 'This is the subject',
+  //       Body: `Name: ${formData.name}<br>Email: ${formData.email}<br>Contact Number: ${formData.contactNumber}<br>Message: ${formData.message}`,
+  //     }).then((response) => {
+  //       console.log(response);
+  //     });
+  //     console.log('Email sent successfully');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // document
+  //   .getElementById('contactForm')
+  //   ?.addEventListener('submit', function (event) {
+  //     event.preventDefault();
+
+  //     const smtpUser = import.meta.env.VITE_EMAIL_USER;
+  //     const smtpPass = import.meta.env.VITE_EMAIL_PASS;
+  //     const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
+
+  //     Email.send({
+  //       SecureToken: smtpPass, // Use SecureToken or direct password
+  //       To: adminEmail,
+  //       From: smtpUser,
+  //       Subject: 'New Newsletter Subscriber',
+  //       Body: `Name: ${formData.name}<br>Email: ${formData.email}<br>Contact Number: ${formData.contactNumber}<br>Message: ${formData.message}`,
+  //     })
+  //       // .then((message) => alert('Email sent successfully!'))
+  //       .catch((error) => alert('Failed to send email: ' + error));
+  //   });
   return (
     <>
       <section>
@@ -31,9 +100,10 @@ const NewsLetter = () => {
                 </p>
               </div>
               <form
-                class="w-full max-w-md lg:col-span-5 lg:pt-2"
-                action="#"
+                onSubmit={handleSubmit}
                 method="POST"
+                id="contactForm"
+                class="w-full max-w-md lg:col-span-5 lg:pt-2"
               >
                 <div class="flex flex-col gap-y-4">
                   <div class="relative">
@@ -42,9 +112,12 @@ const NewsLetter = () => {
                     </div>
                     <input
                       type="text"
-                      id="default-search"
+                      name="name"
+                      id="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Enter your contact name"
+                      placeholder="Enter your name"
                       required
                     />
                   </div>
@@ -54,7 +127,10 @@ const NewsLetter = () => {
                     </div>
                     <input
                       type="text"
-                      id="default-search"
+                      name="contactNumber"
+                      value={formData.contactNumber}
+                      onChange={handleChange}
+                      id="contactNumber"
                       class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter your contact number"
                       required
@@ -65,14 +141,26 @@ const NewsLetter = () => {
                       <MdOutlineEmail size={20} />
                     </div>
                     <input
+                      name="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       autocomplete="email"
-                      id="default-search"
+                      id="email"
                       class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter your email address"
                       required
                     />
                   </div>
+                  <textarea
+                    name="message"
+                    id="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows="4"
+                    class="block  p-4 ps-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Write your message here..."
+                  ></textarea>
                   {/* <input
                     required
                     id="conatct_name"
@@ -92,6 +180,8 @@ const NewsLetter = () => {
                   /> */}
                   <button
                     type="submit"
+                    name="submit"
+                    id="submit"
                     class="flex justify-center rounded-md bg-indigo-500 px-3.5 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                   >
                     Submit
