@@ -14,15 +14,15 @@ import NewsLetter from './components/NewsLetter/NewsLetter';
 function App() {
   return (
     <>
-      <main className='overflow-hidden'>
+      <main className="overflow-hidden">
         <Navbar />
         <Header />
         <AboutUs />
         {/* <Portfolio /> */}
         <Works />
-        <Socials/>
-        <NewsLetter/>
-        {/* <Footer/> */}
+        <Socials />
+        <NewsLetter />
+        <Footer />
       </main>
     </>
   );

@@ -13,7 +13,7 @@ const NewsLetter = () => {
   return (
     <>
       <section>
-        <div className="container">
+        <div className="container mb-28">
           <div className="text-center my-10 p-0 m-0">
             <p className="text-3xl font-[tourney] 2xl:text-4xl">Contact Us</p>
             <h1 className="font-[poppins] font-bold 2xl:text-6xl">

@@ -2,6 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import Poster1 from '../../assets/posters/Churuli-min.jpg';
+import Poster2 from '../../assets/posters/ThinkalaychaNischayam.jpg';
+import Poster3 from '../../assets/posters/Ajagajantharam.jpg';
+import Poster4 from '../../assets/posters/SubashChandraBoss.jpg';
+import Poster5 from '../../assets/posters/SimonDaniel-min.jpg';
+import Poster6 from '../../assets/posters/Pyali.jpg';
+import Poster7 from '../../assets/posters/Nanpakal_Poster.jpg';
+import Poster8 from '../../assets/posters/OITO_poster.jpg';
+import Poster9 from '../../assets/posters/Manjummal Boys.jpg';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -29,54 +38,50 @@ const Works = () => {
 
   const images = [
     {
-      src: 'https://picsum.photos/seed/picsum/200/300',
-      title: 'Title 1',
-      year: '2018',
-    },
-    {
-      src: 'https://picsum.photos/id/237/200/300',
-      title: 'Title 2',
-      year: '2019',
-    },
-    {
-      src: 'https://picsum.photos/200/300?grayscale',
-      title: 'Title 3',
-      year: '2016',
-    },
-    {
-      src: 'https://picsum.photos/200/300/?blur',
-      title: 'Title 4',
-      year: '2015',
-    },
-    {
-      src: 'https://picsum.photos/id/870/200/300?grayscale&blur=2',
-      title: 'Title 5',
-      year: '2018',
-    },
-    {
-      src: 'https://picsum.photos/id/10/367/267',
-      title: 'Title 6',
-      year: '2019',
-    },
-    {
-      src: 'https://picsum.photos/id/22/367/267',
-      title: 'Title 7',
-      year: '2020',
-    },
-    {
-      src: 'https://picsum.photos/id/26/367/267',
-      title: 'Title 8',
-      year: '2018',
-    },
-    {
-      src: 'https://picsum.photos/id/45/367/267',
-      title: 'Title 9',
+      src: Poster1,
+      title: 'Churuli',
       year: '2021',
     },
     {
-      src: 'https://picsum.photos/id/64/367/267',
-      title: 'Title 10',
+      src: Poster2,
+      title: 'Thinkalazhcha Nishchayam',
+      year: '2021',
+    },
+    {
+      src: Poster3,
+      title: 'Ajagajantharam',
+      year: '2021',
+    },
+    {
+      src: Poster4,
+      title: 'Sabaash Chandra Bose',
       year: '2022',
+    },
+    {
+      src: Poster5,
+      title: 'Simon Daniel',
+      year: '2022',
+    },
+    {
+      src: Poster6,
+      title: 'Pyali',
+      year: '2022',
+    },
+
+    {
+      src: Poster7,
+      title: 'Nanpakal Nerathu Mayakkam',
+      year: '2022',
+    },
+    {
+      src: Poster8,
+      title: 'Oridathumillathoridam',
+      year: '2024',
+    },
+    {
+      src: Poster9,
+      title: 'Manjummel Boys',
+      year: '2024',
     },
   ];
 
@@ -136,7 +141,7 @@ const Works = () => {
                     style={{ margin: '0 1%' }}
                   >
                     <div>
-                      <figure className="relative  pb-[120%]">
+                      <figure className="relative  pb-[160%]">
                         <img
                           src={image.src}
                           alt={`Slide ${index}`}
@@ -144,10 +149,10 @@ const Works = () => {
                         />
                       </figure>
                     </div>
-                    <div className="text-center mt-2 md:mt-16  overflow-hidden">
+                    <div className="text-center mt-1  overflow-hidden">
                       {' '}
                       {/* Add title container */}
-                      <span className="font-[poppins] text-2xl md:text-lg text-red-400 font-bold">
+                      <span className="font-[poppins] text-2xl md:text-lg text-indigo-200 font-bold">
                         {image.title}
                       </span>
                       <br />

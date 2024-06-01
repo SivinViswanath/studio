@@ -124,11 +124,12 @@ input[type='range']::-webkit-slider-thumb {
 
 /* Swiper Styles */
 .swiper-button-prev {
-  color: #fa5c6f;
+  color: rgb(76, 77, 173);
+  margin-right: 2rem !important;
 }
 
 .swiper-button-next {
-  color: #fa5c6f;
+  color: rgb(76, 77, 173);
 }
 
 .newsletter {
