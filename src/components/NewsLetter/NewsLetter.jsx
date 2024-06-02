@@ -1,15 +1,9 @@
-import { Box, TextField } from '@mui/material';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useState } from 'react';
-import { FaPhone } from 'react-icons/fa';
-import { Fa4 } from 'react-icons/fa6';
 import { IoIosContact } from 'react-icons/io';
-import {
-  MdAccountCircle,
-  MdOutlineEmail,
-  MdOutlinePhone,
-} from 'react-icons/md';
-
+import { MdOutlineEmail, MdOutlinePhone } from 'react-icons/md';
+import contactUs from '../../assets/cotactUs.png';
+import { Audio } from 'react-loader-spinner';
 const NewsLetter = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,96 +12,91 @@ const NewsLetter = () => {
     message: '',
   });
 
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [formSumitted, setFormSumitted] = useState(false);
+
+  // useEffect(() => {
+  //   // Initialize WebSocket connection
+  //   const socket = io('http://localhost:3000'); // Adjust the URL if your server runs on a different host or port
+
+  //   // Listen for new submissions
+  //   socket.on('newSubmission', (message) => {
+  //     alert(message); // Show an alert for the new submission
+  //   });
+
+  //   // Clean up the connection when the component unmounts
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-  console.log(formData);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccessMessage('');
+    setErrorMessage('');
     try {
-      const response = axios.post(
+      const response = await axios.post(
         'http://localhost:3000/api/subscriber',
         formData,
       );
-      console.log('Form submitted succeccfully', response.data);
+      console.log(response.status);
+      if (response.status === 200) {
+        setFormSumitted(true);
+        setLoading(false);
+        setSuccessMessage('Enquiry submitted successfully!');
+        setFormData({
+          name: '',
+          email: '',
+          contactNumber: '',
+          message: '',
+        });
+      }
     } catch (e) {
-      console.log(e);
+      setLoading(false);
+      setErrorMessage('Error submitting form. Please try again.');
+      console.error(e);
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log('form submission');
-  //   const smtpUser = import.meta.env.VITE_EMAIL_USER;
-  //   const smtpPass = import.meta.env.VITE_EMAIL_PASS;
-  //   const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
-  //   try {
-  //     Email.send({
-  //       SecureToken: 'c3c49119-2f49-449b-aeb0-f1eef4ac2d86',
-  //       To: adminEmail,
-  //       From: smtpUser,
-  //       Subject: 'This is the subject',
-  //       Body: `Name: ${formData.name}<br>Email: ${formData.email}<br>Contact Number: ${formData.contactNumber}<br>Message: ${formData.message}`,
-  //     }).then((response) => {
-  //       console.log(response);
-  //     });
-  //     console.log('Email sent successfully');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // document
-  //   .getElementById('contactForm')
-  //   ?.addEventListener('submit', function (event) {
-  //     event.preventDefault();
-
-  //     const smtpUser = import.meta.env.VITE_EMAIL_USER;
-  //     const smtpPass = import.meta.env.VITE_EMAIL_PASS;
-  //     const adminEmail = import.meta.env.VITE_ADMIN_EMAIL;
-
-  //     Email.send({
-  //       SecureToken: smtpPass, // Use SecureToken or direct password
-  //       To: adminEmail,
-  //       From: smtpUser,
-  //       Subject: 'New Newsletter Subscriber',
-  //       Body: `Name: ${formData.name}<br>Email: ${formData.email}<br>Contact Number: ${formData.contactNumber}<br>Message: ${formData.message}`,
-  //     })
-  //       // .then((message) => alert('Email sent successfully!'))
-  //       .catch((error) => alert('Failed to send email: ' + error));
-  //   });
   return (
-    <>
-      <section>
-        <div className="container mb-28">
-          <div className="text-center my-10 p-0 m-0">
-            <p className="text-3xl font-[tourney] 2xl:text-4xl">Contact Us</p>
-            <h1 className="font-[poppins] font-bold 2xl:text-6xl">
-              For Enquiries
-            </h1>
-          </div>
-          <div class="bg-gray-900 py-16 sm:py-24 lg:py-32">
-            <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
-              <div class="newsletter flex flex-col justify-center items-center max-w-xl text-3xl md:text-5xl font-bold tracking-tight text-white sm:text-4xl lg:col-span-7">
-                <h2 class="inline sm:block lg:inline xl:block whitespace-nowrap font-[poppins]">
-                  Your Project, Our Passion
-                </h2>
-                <p class="inline sm:block lg:inline xl:block font-[poppins]">
-                  Contact Us
-                </p>
-              </div>
+    <section>
+      <div className="container mb-28">
+        <div className="text-center my-10 p-0 m-0">
+          <p className="text-3xl font-[tourney] 2xl:text-4xl">Contact Us</p>
+          <h1 className="font-[poppins] font-bold 2xl:text-6xl">
+            For Enquiries
+          </h1>
+        </div>
+        <div className="bg-gray-900 py-16 sm:py-24 lg:py-32">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-12 lg:gap-8 lg:px-8">
+            <div className="newsletter flex flex-col justify-center items-center max-w-xl text-3xl md:text-4xl font-bold tracking-tight text-white sm:text-4xl lg:col-span-7">
+              <h2 className="inline sm:block  lg:inline xl:block whitespace-nowrap font-[poppins]">
+                Your Project, Our Passion
+              </h2>
+              <p className="inline sm:block lg:inline xl:block font-[poppins]">
+                Contact Us
+              </p>
+            </div>
+            {!formSumitted ? (
               <form
                 onSubmit={handleSubmit}
                 method="POST"
                 id="contactForm"
-                class="w-full max-w-md lg:col-span-5 lg:pt-2"
+                className="w-full max-w-md lg:col-span-5 lg:pt-2"
               >
-                <div class="flex flex-col gap-y-4">
-                  <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <div className="flex flex-col gap-y-4">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <IoIosContact size={20} />
                     </div>
                     <input
@@ -116,13 +105,13 @@ const NewsLetter = () => {
                       id="name"
                       value={formData.name}
                       onChange={handleChange}
-                      class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter your name"
                       required
                     />
                   </div>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none ">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <MdOutlinePhone size={20} />
                     </div>
                     <input
@@ -131,13 +120,13 @@ const NewsLetter = () => {
                       value={formData.contactNumber}
                       onChange={handleChange}
                       id="contactNumber"
-                      class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter your contact number"
                       required
                     />
                   </div>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <div className="relative">
+                    <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                       <MdOutlineEmail size={20} />
                     </div>
                     <input
@@ -145,9 +134,9 @@ const NewsLetter = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      autocomplete="email"
+                      autoComplete="email"
                       id="email"
-                      class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="Enter your email address"
                       required
                     />
@@ -158,51 +147,70 @@ const NewsLetter = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="4"
-                    class="block  p-4 ps-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="block p-4 ps-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Write your message here..."
                   ></textarea>
-                  {/* <input
-                    required
-                    id="conatct_name"
-                    placeholder="Enter your contact number"
-                    class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    type="tel"
-                  />
-
-                  <input
-                    id="email-address"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    required
-                    class="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
-                    placeholder="Enter your email"
-                  /> */}
                   <button
                     type="submit"
                     name="submit"
                     id="submit"
-                    class="flex justify-center rounded-md bg-indigo-500 px-3.5 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    className="flex justify-center rounded-md bg-indigo-500 px-3.5 py-4 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    disabled={loading}
                   >
-                    Submit
+                    {loading ? (
+                      <Audio
+                        height="20"
+                        width="20"
+                        color="#fff"
+                        ariaLabel="audio-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="wrapper-class"
+                        visible={true}
+                      />
+                    ) : (
+                      'Submit'
+                    )}
                   </button>
+                  {successMessage && (
+                    <p className="text-green-500">{successMessage}</p>
+                  )}
+                  {errorMessage && (
+                    <p className="text-red-500">{errorMessage}</p>
+                  )}
                 </div>
-                <p class="mt-4 text-sm leading-6 text-gray-300">
+                <p className="mt-4 text-sm leading-6 text-gray-300">
                   We care about your data. Read our{' '}
                   <a
                     href="https://www.swellai.com/privacy"
-                    class="font-semibold text-white"
+                    className="font-semibold text-white"
                   >
                     privacy&nbsp;policy
                   </a>
                   .
                 </p>
               </form>
-            </div>
+            ) : (
+              <div className="grid grid-col-4">
+                <img
+                  width={300}
+                  className="lightSpeedIn max-w-72 text-center"
+                  src={contactUs}
+                  alt=""
+                />
+                <h1 className="lightSpeedIn font-bold font-[poppins] text-center text-5xl whitespace-nowrap">
+                  Thankyou for <br />
+                  contacting us!
+                </h1>
+                <p className="lightSpeedIn text-center text-sm text-indigo-200 font-[poppins] mt-3">
+                  We have recieved your message <br /> We will reach you out
+                  immediately
+                </p>
+              </div>
+            )}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 
