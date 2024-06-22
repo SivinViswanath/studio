@@ -136,10 +136,7 @@ const Works = () => {
               {' '}
               {images.map((image, index) => (
                 <SwiperSlide key={index}>
-                  <div
-                    className="w-full md:w-56 flex-shrink-0"
-                    style={{ margin: '0 1%' }}
-                  >
+                  <div className="w-full md:w-56 flex-shrink-0">
                     <div>
                       <figure className="relative  pb-[160%]">
                         <img

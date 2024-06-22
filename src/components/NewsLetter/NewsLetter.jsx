@@ -198,7 +198,7 @@ const NewsLetter = () => {
                   alt=""
                 />
                 <h1 className="lightSpeedIn font-bold font-[poppins] text-center text-5xl whitespace-nowrap">
-                  Thankyou for <br />
+                  <span className="mb-2">Thankyou for</span> <br />
                   contacting us!
                 </h1>
                 <p className="lightSpeedIn text-center text-sm text-indigo-200 font-[poppins] mt-3">
