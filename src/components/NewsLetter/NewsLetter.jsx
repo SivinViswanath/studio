@@ -69,7 +69,7 @@ const NewsLetter = () => {
   };
 
   return (
-    <section>
+    <section id="contact_us">
       <div className="container mb-28">
         <div className="text-center my-10 p-0 m-0">
           <p className="text-3xl font-[tourney] 2xl:text-4xl">Contact Us</p>

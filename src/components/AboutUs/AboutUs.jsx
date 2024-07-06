@@ -5,7 +5,7 @@ import card2 from '../../assets/card2.jpg';
 const AboutUs = () => {
   return (
     <>
-      <section>
+      <section id="about">
         <div className="container">
           <div className="text-center my-10 overflow-y-hidden p-0 m-0">
             <p className="text-3xl  font-[tourney] 2xl:text-4xl">What we do</p>

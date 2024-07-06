@@ -96,7 +96,7 @@ const Works = () => {
   };
 
   return (
-    <section>
+    <section id="works">
       <div className="container">
         <div className="text-center my-10 p-0 m-0">
           <p className="text-3xl font-[tourney] 2xl:text-4xl">Clients</p>

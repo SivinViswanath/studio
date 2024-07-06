@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { IoMdClose } from 'react-icons/io';
 import logo from '../../assets/logo.png';
 import dolby from '../../assets/dolby.png';
+import { Link } from 'react-scroll';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -89,30 +90,39 @@ const Navbar = () => {
               >
                 Home
               </a>
-              <a
-                href="#"
-                className={`text-gray-300 hover:text-white my-4 md:my-0 ${
+              <Link
+                to="about"
+                smooth={true}
+                duration={500}
+                className={`cursor-pointer text-gray-300 hover:text-white my-4 md:my-0 ${
                   menuOpen ? 'text-2xl' : 'text-sm 2xl:text-xl'
                 }`}
+                onClick={closeMenu}
               >
                 About
-              </a>
-              <a
-                href="#"
-                className={`text-gray-300 hover:text-white my-4 md:my-0 ${
+              </Link>{' '}
+              <Link
+                to="works"
+                smooth={true}
+                duration={500}
+                className={`cursor-pointer text-gray-300 hover:text-white my-4 md:my-0 ${
                   menuOpen ? 'text-2xl' : 'text-sm 2xl:text-xl'
                 }`}
+                onClick={closeMenu}
               >
-                Blog
-              </a>
-              <a
-                href="#"
-                className={`text-gray-300 hover:text-white my-4 md:my-0 ${
+                Works
+              </Link>
+              <Link
+                to="contact_us"
+                smooth={true}
+                duration={500}
+                className={`cursor-pointer text-gray-300 hover:text-white my-4 md:my-0 ${
                   menuOpen ? 'text-2xl' : 'text-sm 2xl:text-xl'
                 }`}
+                onClick={closeMenu}
               >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
         </div>
